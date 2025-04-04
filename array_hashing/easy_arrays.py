@@ -12,15 +12,41 @@ class Solution:
                 dupes.add(item)
         return False
 
+    def isAnagram(self, s: str, t: str) -> bool:
 
+        if len(s) != len(t):
+            return False
+        
+        s_map, t_map ={},{}
+
+        for item in s:
+            if item in s_map:
+                s_map[item] +=1
+            else:
+                s_map[item] = 1
+
+        for item2 in t:
+            if item2 in t_map:
+                t_map[item2] +=1
+            else:
+                t_map[item2] = 1
+
+        return s_map == t_map
 
 def main():
-    duplicates = [1,2,3,4,4,5]
-    no_duplicates = [1,2,3,4,5]
-    solution = Solution()
-    print(solution.hasDuplicate(duplicates))
-    print(solution.hasDuplicate(no_duplicates))
+    # duplicates = [1,2,3,4,4,5]
+    # no_duplicates = [1,2,3,4,5]
+    # solution = Solution()
+    # print(solution.hasDuplicate(duplicates))
+    # print(solution.hasDuplicate(no_duplicates))
 
+    solution2 = Solution()
+    s1 = "racecar"
+    t1 = "carrace"
+    print(solution2.isAnagram(s1,t1))
+    s2 = "raceca"
+    t2 = "carrac"
+    print(solution2.isAnagram(s2,t2))
 
 if __name__ == "__main__":
     main()
