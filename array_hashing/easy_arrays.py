@@ -32,6 +32,17 @@ class Solution:
                 t_map[item2] = 1
 
         return s_map == t_map
+    
+    def twoSum(self, nums, target: int):
+        #make a hash map that will have the difference 
+        mapping = {}
+
+        for i,n in enumerate(nums):
+            diff = target-nums[i]
+            if diff in mapping:
+                return [mapping[diff], i]
+            mapping[n] = i
+    
 
 def main():
     # duplicates = [1,2,3,4,4,5]
