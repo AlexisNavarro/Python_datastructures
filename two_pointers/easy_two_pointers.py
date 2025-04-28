@@ -3,6 +3,7 @@ class Solution:
         l, r = 0, len(s)-1
 
         while l < r:
+            #check if the current character is alpha numeric
             if not s[l].isalnum():
                 l+=1
                 continue
@@ -11,6 +12,7 @@ class Solution:
                 r-=1
                 continue
             
+            #convert the character to lower case for proper comparison
             if s[l].lower() != s[r].lower():
                 return False
             
