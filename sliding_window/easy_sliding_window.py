@@ -2,6 +2,8 @@ from typing import List
 
 
 class Solution:
+    #solving the maximum profit you can make by buying stock on one day and selling stock another
+    #You can't go back in time to buy or sell stock, you can only move forward
     def maxProfit(self, prices: List[int]) -> int:
         l, r = 0, 1 #left = buy right = sell
         max_profit = 0
