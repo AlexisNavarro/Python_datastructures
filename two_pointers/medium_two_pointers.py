@@ -48,6 +48,23 @@ class Solution:
         return res
 
 
+    def isValid(self, s: str) -> bool:
+        stack = []
+        closeToOpen =  { ")" : "(", "]" : "[", "}" : "{" }
+
+        for c in s:
+            #check if the current value is a close char
+            if c in closeToOpen:
+                #if stack is not empty and last item in the stack matches with the current value in the hashmap
+                if stack and stack[-1] == closeToOpen[c]:
+                    stack.pop()
+                else:
+                    return False
+            else:
+                stack.append(c)
+
+        return True if not stack else False
+
             
         
 
