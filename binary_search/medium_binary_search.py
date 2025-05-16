@@ -1,4 +1,5 @@
 
+import math
 from typing import List
 
 
@@ -39,5 +40,35 @@ class Solution:
             
         return False
 
+    def minEatingSpeed(self, piles: List[int], h: int) -> int:
+        #piles [i] number of bananas in the ith pile
+        #h represents number of hours to eat the bananas
 
-            
+        max_bananas = 0
+
+        # Find the maximum number of bananas in a single pile
+        # (can be replaced with max(piles) for brevity)
+        for i in range(len(piles)):
+            max_bananas = max(max_bananas, piles[i])
+        
+        l, r = 1, max_bananas
+        res = r
+
+        # Perform binary search between 1 and the largest pile
+        while l <= r:
+            k = (l+r) // 2 #k is the middle pointer in the array
+            hours = 0
+
+            for p in piles:
+                #will round out the output
+                hours += math.ceil(p/k)
+
+            if hours <= h:
+                res = min(res, k)
+                r = k - 1 # Update result with a possible smaller speed since we want the min output
+            else:
+                l = k + 1 # Too slow, need to increase speed
+        return res
+
+
+        
