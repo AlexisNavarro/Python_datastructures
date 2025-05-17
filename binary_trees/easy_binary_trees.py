@@ -39,6 +39,17 @@ class Solution:
         self.invertTree2(root.right)
         return root
 
+    def maxDepth(self, root):
+    # Base case: if the current node is None, the depth is 0
+        if root is None:
+            return 0
+
+        #traverse through the left and right subtrees
+        left = self.maxDepth(root.left)
+        right = self.maxDepth(root.right)
+
+        # Return the maximum of the two depths plus 1 for the current node
+        return 1+max(left, right)
 
 
 
