@@ -52,4 +52,27 @@ class Solution:
         return 1+max(left, right)
 
 
+    def diameterOfBinaryTree(self, root):
+        #global variable
+        self.res = 0
+
+        #use depth first search, curr is the current node
+        def dfs(curr):
+            if not curr:
+                return 0
+
+            #traverse the subtrees
+            left = dfs(curr.left)
+            right = dfs(curr.right)
+
+            #The diameter at the current node is the sum of left and right depths
+            self.res = max(self.res, left+right)
+
+            #Return the depth of the current node (max depth of subtrees + 1)
+            return max(left,right) + 1
+
+        dfs(root)
+        return self.res
+        
+
 
