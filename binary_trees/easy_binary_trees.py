@@ -7,7 +7,11 @@
 
 
 class Solution:
+
+    #inverting the tree using DFS (Depth first search)
     def invertTree(self, root):
+
+        #if we have an empty root
         if root is None:
             return None
 
@@ -16,8 +20,25 @@ class Solution:
         root.left = root.right
         root.right = temp
 
+        #traverse the tree left node then right node
         self.invertTree(root.left)
         self.invertTree(root.right)
         return root
+    
+    def invertTree2(self, root):
+
+        #if we have an empty root
+        if root is None:
+            return None
+
+        #swap children this way without a need for a temp variable
+        root.left, root.right = root.right, root.left
+
+        #traverse the tree left node then right node
+        self.invertTree2(root.left)
+        self.invertTree2(root.right)
+        return root
+
+
 
 
