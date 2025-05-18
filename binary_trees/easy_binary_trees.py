@@ -96,6 +96,17 @@ class Solution:
         return dfs(root)[0]
 
 
-        
+    #function that compares two binary trees and checks that they are the same
+    def isSameTree(self, p, q) -> bool:
+
+        #if both trees are empty then they are the same
+        if p is None and q is None:
+            return True 
+
+        #if both trees are non-empty and have the same values then traverse the left and right subtress of both trees
+        if p and q and p.val == q.val:
+            return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+        else:
+            return False
 
 
