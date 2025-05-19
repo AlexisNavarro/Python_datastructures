@@ -110,3 +110,19 @@ class Solution:
             return False
 
 
+    #function to check that if a fixed subtree exists in the binary tree 
+    def isSubtree(self, root, subRoot):
+        if subRoot is None:
+            return True
+
+        #if we dont have a root and we have a subroot then its false
+        if root is None and subRoot:
+            return False
+
+        #call isSameTree to check that if the tree values are the same
+        if self.isSameTree(root, subRoot):
+            return True
+
+        #check left and right subtree of root since the subroot is fixed
+        return self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot)
+        
