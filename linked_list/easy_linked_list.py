@@ -1,3 +1,10 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
+
 class Solution:
     def reverseList(self, head):
         if head is None:
@@ -19,3 +26,40 @@ class Solution:
             #curr will move forward to the pointer we saved
             curr = temp
         return prev
+    
+    # Definition for singly-linked list.
+
+    def mergeTwoLists(self, list1, list2):
+        #Initialize a new linked list
+        new_list = ListNode()
+
+        #make the temp pointer node become the head for the new list
+        temp = new_list
+
+        #traverse both linked lists
+        while list1 and list2:
+
+            #compare list values
+            if list1.val < list2.val:
+
+                #make the next pointer for temp be the value from list1
+                temp.next = list1
+                list1 = list1.next  #move one node over
+
+            else:
+                temp.next = list2
+                list2 = list2.next
+            
+            #move temp one node over to be able to add new nodes
+            temp = temp.next
+
+        #if there still items in list 1, add them 
+        if list1:
+            temp.next = list1
+
+        #if there still items in list 2, add them 
+        if list2:
+            temp.next = list2
+
+        #return the new list at the next pointer where the linked list actually beings, skipping the dummy node
+        return new_list.next
