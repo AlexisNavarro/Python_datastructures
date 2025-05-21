@@ -27,7 +27,6 @@ class Solution:
             curr = temp
         return prev
     
-    # Definition for singly-linked list.
 
     def mergeTwoLists(self, list1, list2):
         #Initialize a new linked list
@@ -63,3 +62,22 @@ class Solution:
 
         #return the new list at the next pointer where the linked list actually beings, skipping the dummy node
         return new_list.next
+    
+    def hasCycle(self, head):
+        if head is None:
+            return False
+
+        #use two pointers
+        slow, fast = head,head
+
+        #traverse and exit the loop based on the fast pointer
+        while fast and fast.next:
+            
+            slow = slow.next
+            fast = fast.next.next
+
+            #check if the slow and fast pointer is the same node
+            if slow == fast:
+                return True
+
+        return False
