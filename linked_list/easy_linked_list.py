@@ -63,6 +63,9 @@ class Solution:
         #return the new list at the next pointer where the linked list actually beings, skipping the dummy node
         return new_list.next
     
+    #This implementation will use two pointers which will avoid the need of extra memory
+    #Time complexity O(n)
+    #Space complexity O(1)
     def hasCycle(self, head):
         if head is None:
             return False
@@ -80,4 +83,18 @@ class Solution:
             if slow == fast:
                 return True
 
+        return False
+
+    #This implementation for checking if there is a cycle will use a set, which will increase memory usage
+    #Time complexity O(n)
+    #Space complexity O(n)
+    def hasCycle2(self, head):
+        visited = set()
+
+        while head:
+            if head not in visited:
+                visited.add(head)
+                head = head.next
+            else:
+                return True
         return False
