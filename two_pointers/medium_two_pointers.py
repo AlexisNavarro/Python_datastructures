@@ -65,6 +65,31 @@ class Solution:
 
         return True if not stack else False
 
-            
+        
+
+    #Find the maximum amount of water that a container can store
+    def maxArea(self, heights: List[int]) -> int:
+
+        #initialize 2 pointers, start and end
+        l, r = 0, len(heights) - 1
+        max_water = 0 
+
+        while l < r:
+
+            #obtain the width and height between the two pointers to get the area
+            width = r-l
+            height = min(heights[r], heights[l])
+            area = width * height
+
+            max_water = max(area, max_water) #obtain the max_water between the current area and the max_water we have currently
+
+            #if the left pointer is smaller than the right then increment the left else the right         
+            if heights[l] < heights[r]:
+                l+=1
+            else:
+                r-=1
+        return max_water
+
+
         
 
