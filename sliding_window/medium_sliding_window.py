@@ -44,7 +44,9 @@ class Solution:
             res = max(res, r-l+1) #store the largest window size
         return res
 
-
+    #You are given an array prices where prices[i] is the price of a given stock on the ith day.
+    #You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
+    #Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
     def maxProfit(self, prices: List[int]) -> int:
         l, r = 0, 1
 
@@ -60,3 +62,25 @@ class Solution:
                 l = r #set the left to the lowest value if prices[l] is greater than prices[r]
             r+=1
         return maxP
+    
+    #You are given an integer array prices where prices[i] is the price of a given stock on the ith day.
+    #On each day, you may decide to buy and/or sell the stock. You can only hold at most one share of the stock at any time. However, you can buy it then immediately sell it on the same day.
+    #Find and return the maximum profit you can achieve.
+    def maxProfit2(self, prices: List[int]) -> int:
+        l, r = 0, 1
+
+        profits = 0
+        while r < len(prices):
+            if prices[l] < prices[r]:
+                # Accumulate profit when there is an increase in price
+                profits += prices[r] - prices[l]
+                
+                l = r  # Move the left pointer to the right to start from the new base
+
+            else:
+                # If the current price is lower or equal, update the left pointer
+                l=r 
+
+            r+=1  # Move the right pointer to the next day
+
+        return profits
