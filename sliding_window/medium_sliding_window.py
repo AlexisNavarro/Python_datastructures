@@ -84,3 +84,28 @@ class Solution:
             r+=1  # Move the right pointer to the next day
 
         return profits
+    
+    # Given an array of positive integers nums and a positive integer target
+    # return the minimal length of a subarray whose sum is greater than or equal to target.
+    # If there is no such subarray, return 0 instead.
+    def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+        l = 0 
+        total = 0
+        min_l = float('inf') #set min_l to float to be able to compare properly the sizes of the window
+
+        for r in range(len(nums)):
+            total += nums[r]
+
+            #as long as the total is greater than the target, then compare the window sizes and shrink the window once after
+            while total >= target:
+                min_l = min(min_l, r-l+1) #compare the window sizes and keep the smallest one
+                total-=nums[l] #subract the value from the total from the left pointer
+                l+=1
+
+        if min_l == float('inf'):
+            return 0 #return 0 if there is no valid sub_array
+        else:
+            return min_l
+
+
+
