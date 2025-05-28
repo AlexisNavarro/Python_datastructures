@@ -1,3 +1,6 @@
+from typing import List
+
+
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         charSet = set()
@@ -40,3 +43,20 @@ class Solution:
 
             res = max(res, r-l+1) #store the largest window size
         return res
+
+
+    def maxProfit(self, prices: List[int]) -> int:
+        l, r = 0, 1
+
+        maxP = 0
+
+        #traverse the list based on the right pointer
+        while r < len(prices):
+            #if the left pointer value is less than the right pointer value, then calculate the profit and update the maxP
+            if prices[l] < prices[r]:
+                profit = prices[r] - prices[l]
+                maxP = max(maxP, profit)
+            else:
+                l = r #set the left to the lowest value if prices[l] is greater than prices[r]
+            r+=1
+        return maxP
